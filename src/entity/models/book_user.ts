@@ -1,5 +1,4 @@
 export interface BookUserInterface {
-	id: string;
-	userId: string;
-	bookId: string;
+	user_id: number;
+	book_id: number;
 }

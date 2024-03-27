@@ -1,6 +1,7 @@
 export interface UserInterface {
-	id: string;
+	id: number;
 	username: string;
 	password: string;
 	point: number;
+	created_at: string;
 }
