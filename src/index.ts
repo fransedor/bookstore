@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import http from "http";
 import "dotenv/config";
-import { router as authRouter } from "./routers/index.js";
+import { router } from "./routers/index.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   console.log("app is running");
   res.send({ message: "ok" });
 });
-app.use("/auth", authRouter);
+app.use("/", router);
 
 const server = http.createServer(app);
 
