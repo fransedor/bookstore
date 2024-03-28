@@ -14,7 +14,6 @@ CREATE TABLE "book_user" (
 CREATE TABLE "users" (
   "id" integer PRIMARY KEY,
   "username" varchar,
-  "password" varchar,
   "point" number,
   "created_at" timestamp
 );
