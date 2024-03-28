@@ -12,18 +12,18 @@ CREATE TABLE "book_user" (
 );
 
 CREATE TABLE "users" (
-  "id" integer PRIMARY KEY,
+  "id" serial PRIMARY KEY,
   "username" varchar,
-  "point" number,
+  "point" integer,
   "created_at" timestamp
 );
 
 CREATE TABLE "books" (
-  "id" integer PRIMARY KEY,
+  "id" serial PRIMARY KEY,
   "title" varchar,
   "writer" varchar,
   "cover_image" varchar,
-  "point" number,
+  "point" integer,
   "tag" tags,
   "created_at" timestamp
 );

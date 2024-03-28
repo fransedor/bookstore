@@ -1,4 +1,4 @@
-import { Pool } from "pg";
+import Pool from 'pg-pool';
 
 const host = process.env.DB_HOST;
 const username = process.env.DB_USERNAME;
@@ -12,6 +12,7 @@ const pool = new Pool({
   password,
   port: Number(port),
   database: dbName,
+	ssl: true,
 });
 
-export const query = (text: string, values?: string[]) => pool.query(text, values);
+export const query = (text: string, values?: Array<string>) => pool.query(text, values);
