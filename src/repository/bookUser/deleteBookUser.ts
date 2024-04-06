@@ -1,4 +1,5 @@
 import { query } from "../../entity/index.js";
+import { errorThrower } from "../../utils/errorThrower.js";
 
 export const deleteBookUser = async (userId: number, bookId: number) => {
   try {
@@ -8,6 +9,6 @@ export const deleteBookUser = async (userId: number, bookId: number) => {
     ]);
   } catch (err) {
     console.log("deleteBookUser err: %v", err);
-    throw new Error(`"Error deleting order: ${err}`);
+    throw errorThrower(500, "Cannot delete order");
   }
 };

@@ -1,4 +1,5 @@
 import { query } from "../../entity/index.js";
+import { errorThrower } from "../../utils/errorThrower.js";
 
 export const createBookUser = async (userId: number, bookId: number) => {
   try {
@@ -8,6 +9,6 @@ export const createBookUser = async (userId: number, bookId: number) => {
     ]);
   } catch (err) {
     console.log("createBookUser err: %v", err);
-    throw new Error("Error creating order");
+    errorThrower(500, "Cannot create order");
   }
 };

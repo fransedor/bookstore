@@ -1,4 +1,6 @@
 import { query } from "../../entity/index.js";
+import { BookUserInterface } from "../../entity/models/book_user.js";
+import { errorThrower } from "../../utils/errorThrower.js";
 
 export const getBookUser = async (userId: number, bookId: number) => {
   try {
@@ -7,9 +9,9 @@ export const getBookUser = async (userId: number, bookId: number) => {
       String(bookId),
     ]);
 		console.log(`getBookUser :`, res.rowCount);
-		return res.rows
+		return res.rows as BookUserInterface[]
   } catch (err) {
     console.log("getBookUser err: %v", err);
-    throw new Error("Error getting order");
+    throw errorThrower(500, "Error when getting order");
   }
 };
