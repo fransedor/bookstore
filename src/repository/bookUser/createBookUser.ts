@@ -9,6 +9,6 @@ export const createBookUser = async (userId: number, bookId: number) => {
     ]);
   } catch (err) {
     console.log("createBookUser err: %v", err);
-    errorThrower(500, "Cannot create order");
+    throw errorThrower(500, "Cannot create order");
   }
 };
