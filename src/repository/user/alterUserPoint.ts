@@ -3,7 +3,7 @@ import { query } from "../../entity/index.js";
 import { UserInterface } from "../../entity/models/user.js";
 import { errorThrower } from "../../utils/errorThrower.js";
 
-export const alterUserPoint = async (userId: number, newPoint: number) => {
+export const alterUserPoint = async (userId: string, newPoint: number) => {
   try {
     (await query("UPDATE users SET point=$1 WHERE id=$2", [
       String(newPoint),

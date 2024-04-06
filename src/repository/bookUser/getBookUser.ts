@@ -2,7 +2,7 @@ import { query } from "../../entity/index.js";
 import { BookUserInterface } from "../../entity/models/book_user.js";
 import { errorThrower } from "../../utils/errorThrower.js";
 
-export const getBookUser = async (userId: number, bookId: number) => {
+export const getBookUser = async (userId: string, bookId: string) => {
   try {
     const res = await query("SELECT user_id FROM book_user WHERE user_id=$1 AND book_id=$2", [
       String(userId),

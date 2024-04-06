@@ -3,13 +3,13 @@ import { query } from "../../entity/index.js";
 import { UserInterface } from "../../entity/models/user.js";
 import { errorThrower } from "../../utils/errorThrower.js";
 
-export const getUserById = async (userId: number) => {
+export const getUserById = async (userId: string) => {
 	try {
 		const res = (await query("SELECT * FROM users WHERE id=$1", [
-			String(userId),
+			userId,
     ])) as QueryResult<Omit<UserInterface, "created_at">>;
 
-		console.log('getUserById', res.rows);
+		console.log('getUserById', userId, res.rows);
 
 		return res.rows
 	} catch(err) {

@@ -3,7 +3,7 @@ import { query } from "../../entity/index.js";
 import { BookInterface } from "../../entity/models/book.js";
 import { errorThrower } from "../../utils/errorThrower.js";
 
-export const getBookById = async (bookId: number) => {
+export const getBookById = async (bookId: string) => {
 	try {
 		const res = await query("SELECT * FROM books WHERE id=$1", [String(bookId)]) as QueryResult<BookInterface>
 

@@ -1,7 +1,7 @@
 import { query } from "../../entity/index.js";
 import { errorThrower } from "../../utils/errorThrower.js";
 
-export const deleteBookUser = async (userId: number, bookId: number) => {
+export const deleteBookUser = async (userId: string, bookId: string) => {
   try {
     await query("DELETE FROM book_user WHERE user_id=$1 AND book_id=$2", [
       String(userId),

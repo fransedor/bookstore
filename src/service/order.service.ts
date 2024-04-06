@@ -8,8 +8,8 @@ import { errorThrower } from "../utils/errorThrower.js";
 import { ServiceReturnInterface } from "../utils/types.js";
 
 export const createOrder = async (
-  userId: number,
-  bookId: number
+  userId: string,
+  bookId: string
 ): Promise<ServiceReturnInterface<null>> => {
   try {
     const existingOrder = await getBookUser(userId, bookId);
@@ -55,8 +55,8 @@ export const createOrder = async (
 };
 
 export const deleteOrderService = async (
-  userId: number,
-  bookId: number
+  userId: string,
+  bookId: string
 ): Promise<ServiceReturnInterface<null>> => {
   try {
     const existingOrder = await getBookUser(userId, bookId);
