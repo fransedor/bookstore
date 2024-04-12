@@ -1,11 +1,13 @@
+import { BookInterface } from "../entity/models/book.js";
 import { createBookUser } from "../repository/bookUser/createBookUser.js";
 import { deleteBookUser } from "../repository/bookUser/deleteBookUser.js";
+import { getAllBookUser, getAllBookUserWithBookData } from "../repository/bookUser/getAllBookUser.js";
 import { getBookUser } from "../repository/bookUser/getBookUser.js";
 import { getBookById } from "../repository/books/getBookById.js";
 import { alterUserPoint } from "../repository/user/alterUserPoint.js";
 import { getUserById } from "../repository/user/getUserById.js";
 import { errorThrower } from "../utils/errorThrower.js";
-import { ServiceReturnInterface } from "../utils/types.js";
+import { CustomErrorInterface, ServiceReturnInterface } from "../utils/types.js";
 
 export const createOrder = async (
   userId: string,
@@ -88,3 +90,14 @@ export const deleteOrderService = async (
     throw errorThrower(500, (err as Error).message);
   }
 };
+
+export const getOrderByUserService = async (userId: string) => {
+	try {
+		const allOrdersByUser = await getAllBookUserWithBookData(userId);
+		return allOrdersByUser;
+	} catch(err) {
+		console.log("getOrderByUserService error: ", err);
+    const { code, message } = err as CustomErrorInterface;
+    throw errorThrower(code, message)
+	}
+} 

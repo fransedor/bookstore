@@ -3,6 +3,7 @@ import { errorThrower } from "../../utils/errorThrower.js";
 
 export const createBookUser = async (userId: string, bookId: string) => {
   try {
+		console.log("creating order with userId: ", userId, ", bookId: ", bookId)
     await query("INSERT INTO book_user (user_id, book_id) VALUES ($1, $2)", [
       String(userId),
       String(bookId),

@@ -14,7 +14,7 @@ CREATE TABLE "book_user" (
 CREATE TABLE "users" (
   "id" serial PRIMARY KEY,
   "username" varchar,
-  "point" integer,
+  "point" smallint,
   "created_at" timestamp
 );
 
@@ -23,7 +23,7 @@ CREATE TABLE "books" (
   "title" varchar,
   "writer" varchar,
   "cover_image" varchar,
-  "point" integer,
+  "point" smallint,
   "tag" tags,
   "created_at" timestamp
 );
