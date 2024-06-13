@@ -1,3 +1,5 @@
+import { JwtPayload } from "jwt-decode";
+
 export interface ServiceReturnInterface<T> {
 	error: boolean;
 	code: number;
@@ -8,4 +10,9 @@ export interface ServiceReturnInterface<T> {
 export interface CustomErrorInterface {
 	code: number;
 	message: string;
+}
+
+export interface CustomJWTPayload extends JwtPayload {
+  admin: boolean;
+  exp: number;
 }

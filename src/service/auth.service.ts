@@ -2,9 +2,10 @@ import { createNewUser } from "../repository/user/createNewUser.js";
 import { getUserByUsername } from "../repository/user/getUserByUsername.js";
 import { errorThrower } from "../utils/errorThrower.js";
 import bcrypt from "bcrypt";
-import { CustomErrorInterface } from "../utils/types.js";
+import { CustomErrorInterface, CustomJWTPayload } from "../utils/types.js";
 import jwt from "jsonwebtoken";
 import { UserInterface } from "../entity/models/user.js";
+import { jwtDecode } from "jwt-decode";
 
 const JWT_SECRET = process.env.JWT_SECRET || "";
 const ACCESS_TOKEN_EXPIRE_IN_SECONDS = process.env.ACCESS_TOKEN_EXPIRE_IN_SECONDS || "3600";
@@ -62,3 +63,24 @@ export const registerUser = async (username: string, password: string) => {
     throw errorThrower(code, message);
   }
 };
+
+export const validateAccessToken = (accessToken: string) =>  {
+  if (!accessToken) {
+    return false;
+  }
+
+  // If non admin user, return false
+  const decodedToken = jwtDecode<CustomJWTPayload>(accessToken);
+  if (!decodedToken.admin) {
+    return false;
+  }
+
+  const currentEpochTimeInSeconds = Math.floor(Date.now() / 1000);
+
+  // If token has expired, return false
+  if (currentEpochTimeInSeconds > decodedToken.exp) {
+    return false;
+  }
+
+  return true;
+}
